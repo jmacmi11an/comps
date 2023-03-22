@@ -4,16 +4,14 @@ function Dropdown({ options }) {
     // const [selected, setSelected] = useState('Select...');
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleSelect = () => {
-
+    const handleOptionClick = (option) => {
+        setIsOpen(false);
+        console.log(option.value);
     }
-
-    const handleClick = () => {
-        setIsOpen(!isOpen);
-    };
+    const handleClick = () => setIsOpen(!isOpen)
 
     const renderedOptions = options.map((option) => {
-        return <div key={option.value}>{option.label}</div>
+        return <div onClick={() => handleOptionClick(option)} key={option.value}>{option.label}</div>
     });
 
     return <div>
