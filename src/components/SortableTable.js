@@ -62,9 +62,7 @@ function SortableTable (props) {
         })
     }
 
-    return <div>
-            <Table {...props} config={updatedConfig} data={sortedData} />
-        </div>
+    return <Table {...props} config={updatedConfig} data={sortedData} />
 }
 
 function getIcons(label, sortBy, sortOrder){
