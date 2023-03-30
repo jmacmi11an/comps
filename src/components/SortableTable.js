@@ -26,13 +26,16 @@ function SortableTable (props) {
         }
         return {
             ...column,
-            header: () => <th onClick={() => handleClick(column.label)}>{column.label} is sortable</th>
+            header: () => (
+                <th onClick={() => handleClick(column.label)}>
+                    {getIcons(column.label, sortBy, sortOrder)}
+                    {column.label}
+                </th>
+            ),
         }
     })
 
-    // Only sort data is sortOrder && sortBy are not null
-    // Make a copy of the data prop
-    // Find the correct sort by value and use it for sorting
+
     let sortedData = data;
     if (sortOrder && sortBy) {
         const { sortValue } = config.find(column => column.label === sortBy)
@@ -54,6 +57,19 @@ function SortableTable (props) {
             {sortOrder} - {sortBy}
             <Table {...props} config={updatedConfig} data={sortedData} />
         </div>
+}
+
+function getIcons(label, sortBy, sortOrder){
+    if (label !== sortBy) {
+        return 'Show both';
+    }
+    if (sortOrder === null){
+        return "show both";
+    } else if (sortOrder === 'asc'){
+        return "asc"
+    } else if (sortOrder === 'desc'){
+        return "desc"
+    }
 }
 
 export default SortableTable
