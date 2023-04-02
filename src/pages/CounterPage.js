@@ -20,6 +20,12 @@ const reducer = (state, action) => {
             ...state, 
             valueToAdd: action.payload,
         }
+    } if (action.type === 'sum'){
+        return {
+            ...state,
+            count: state.count + state.valueToAdd,
+            valueToAdd: 0,
+        }
     }
 
     return state;
@@ -49,8 +55,11 @@ function CounterPage({ initialCount }) {
         })
     }
     const handleSubmit = (event) => {
-    //     event.preventDefault();
+        event.preventDefault();
 
+            dispatch({
+                type: 'sum',
+            })
     //     setCount(count + valueToAdd);
     //     setValueToAdd(0);
     }
